@@ -6,12 +6,12 @@ import java.util.Scanner;
 public class RRS {
     static Scanner sc = new Scanner(System.in);
     public static ArrayList<UserList> userlists = new ArrayList<>();
-    public static ArrayList<TravelHistory> travelhistory = new ArrayList<>();
+//    public static ArrayList<TravelHistory> travelhistory = new ArrayList<>();
     public static ArrayList<Booking> booking = new ArrayList<>();
     public static ArrayList<WaitingList> wating = new ArrayList<>();
     static int currentUser = -1;
-    static int currentStation = 0;
-    static int station[][] = new int[5][10];
+//    static int currentStation = 0;
+    public static int[][] station = new int[5][10];
     //static String waiting[][] = new String[5][];
     public static void main(String[] args) {
         boolean flag = true;
@@ -22,6 +22,12 @@ public class RRS {
             System.out.println("1.Admin\n2.User\n3.Exit");
             int option = sc.nextInt();
             switch (option) {
+                //case 1:
+                //   ---somethig
+                //    break;
+                //default:
+                //   --somrtging
+                //break;
                 case 1 -> Admin();
                 case 2 -> User();
                 case 3 -> flag = false;
@@ -72,7 +78,7 @@ public class RRS {
                 count++;
             }
             if(count>=3){
-                System.out.println("Soething went Wromg Try after Some time");
+                System.out.println("Something went Wrong Try after Some time");
                 flag  = false;
             }
 
@@ -146,12 +152,17 @@ public class RRS {
            System.out.println("Enter ending statoin");
            int endingStation = sc.nextInt();
            int seat  = 0;
-           for(int j=0;j<station.length;j++){
+           for(int j=0; j<station.length ; j++){
                int sum =0;
-               //            1-1                  5-1
+               //            1-1->0                  2-1->1
                for(int k=startingStation-1;k<endingStation-1;k++){
                    sum+=station[j][k];
                }
+               // 0 0 1 1 0
+               // 0 0 1 1 0
+               // 0 0 1 1 0
+               // 0 0 0 0 0   -> 3
+               // 0 0 1 1 0
                if(sum==0){
                    System.out.println("seat allocated "+(j+1));
                    String pnrid = "#PNR"+userlists.get(currentUser).userId+booking.size();
@@ -165,11 +176,6 @@ public class RRS {
                    break;
                }
            }
-           for(int i1=0;i1<5;i1++){
-               for(int j1=0;j1<10;j1++){
-                   System.out.print(station[i1][j1]);
-               }System.out.println();
-           }
            if(seat == 0 && wating.size()<5){
                System.out.println("Seat not available");
                    System.out.println("putting you in waiting list");
@@ -182,12 +188,8 @@ public class RRS {
                seat =0;
            }
        }
-        for (WaitingList waitingList : wating) {
-            try {
-                System.out.println(waitingList.userid + " " + waitingList.startingStation + " " + waitingList.endingStation + " ");
-            } catch (Exception ignored) {
-
-            }
+        for (WaitingList i : wating) {
+                System.out.println(i.userid + " " + i.startingStation + " " + i.endingStation + " ");
             System.out.println();
         }
     }
@@ -239,13 +241,13 @@ public class RRS {
 
     private static void TravelHistory() {
         System.out.println("Travel history Appears here");
-        for (int i=0;i<booking.size();i++) {
-            if (booking.get(i).userid.equals(userlists.get(currentUser).userId)) {
-                System.out.println("From->"+booking.get(i).from);
-                System.out.println("To->"+booking.get(i).to);
-                System.out.println("Seat No ->"+booking.get(i).seat);
-                System.out.println("PNRID ->"+booking.get(i).pnrid);
-                System.out.println("Travelled->"+booking.get(i).travelled);
+        for (Booking value : booking) {
+            if (value.userid.equals(userlists.get(currentUser).userId)) {
+                System.out.println("From->" + value.from);
+                System.out.println("To->" + value.to);
+                System.out.println("Seat No ->" + value.seat);
+                System.out.println("PNRID ->" + value.pnrid);
+                System.out.println("Travelled->" + value.travelled);
                 System.out.println("---------------------------------------");
             }
         }
