@@ -5,9 +5,9 @@
      Username -> admin
      Password -> 1234
  - Users:
-  username,password,money available
-  sriram, 1234, 100000
-  anonymous, 9585, 1000
+  username,password,money available<br>
+  sriram, 1234, 100000<br>
+  anonymous, 9585, 1000<br>
   mranonymous, 1723, 19865
 
 
