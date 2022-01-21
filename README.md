@@ -13,7 +13,7 @@
 
 # AMAZON
 
--Admin:
+- Admin:
     Username -> 1234
     Password -> 1234
     
