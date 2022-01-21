@@ -1,6 +1,6 @@
 # zoho-java
 
-#ATM
+# ATM
  - Admin:
      Username -> admin
      Password -> 1234
@@ -11,13 +11,13 @@
   mranonymous, 1723, 19865
 
 
-#AMAZON
+# AMAZON
 
 -Admin:
     Username -> 1234
     Password -> 1234
     
     
-#RAILWAY RESERVATION SYSTEM
+# RAILWAY RESERVATION SYSTEM
 - Users
   No Default Users
