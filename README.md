@@ -14,7 +14,7 @@
 # AMAZON
 
 - Admin:
-    Username -> 1234
+    Username -> 1234<br>
     Password -> 1234
     
     
