@@ -2,7 +2,7 @@
 
 # ATM
  - Admin:
-     Username -> admin
+     Username -> admin<br>
      Password -> 1234
  - Users:
   username,password,money available<br>
