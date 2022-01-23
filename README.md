@@ -2,7 +2,7 @@
 
 # ATM
  - Admin:
-     Username -> admin
+     Username -> admin<br>
      Password -> 1234
  - Users:
   username,password,money available<br>
@@ -18,6 +18,6 @@
     Password -> 1234
     
     
-# RAILWAY RESERVATION SYSTEM
+# RAILWAY RESERVATION SYSTEM (RRS)
 - Users<br>
   No Default Users
