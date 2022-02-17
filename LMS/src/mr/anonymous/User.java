@@ -21,6 +21,25 @@ public class User {
 
     Scanner sc = new Scanner(System.in);
 
+    public void userwelcome() {
+        boolean flag = true;
+        while (flag) {
+            System.out.println("Welcome User");
+            System.out.println("1.New user\n2.Extisting User\n3.Exit");
+            int option = sc.nextInt();
+            sc.nextLine();
+            switch (option) {
+                case 1 -> {addUser();}
+                case 2 -> {userlogin();}
+                case 3 -> {flag = false;}
+                default -> {
+                    System.out.println("Enter between 1 to 3");
+                }
+            }
+        }
+
+    }
+
     public void addUser() {
         System.out.println("Enter new username");
         String username = sc.nextLine();
@@ -34,7 +53,7 @@ public class User {
 
     }
 
-    public void user() {
+    public void userlogin() {
 
         boolean flag = true;
         int attempt = 0;
@@ -77,6 +96,7 @@ public class User {
                     System.out.println("Enter Password");
                     String password = sc.nextLine();
                     if (password.equals(userList.get(currentUser).password)) {
+                        flag = false;
                         userOperation();
                     } else {
                         System.out.println("Wrong Password Try Again");
@@ -96,6 +116,30 @@ public class User {
     }
 
     private void userOperation() {
+        boolean flag = true;
+        while (flag) {
+            Flush.flush();
+            System.out.println("Welcome " + userList.get(currentUser).username);
+            System.out.println("Enter an option");
+            System.out.println("1.Borrow Book\n2.Return Book\n3.My History\n4.Exit");
+            int option = sc.nextInt();
+            sc.nextLine();
+            switch (option) {
+                case 1 -> {
+                }
+                case 2 -> {
+                }
+                case 3 -> {
+                }
+                case 4 -> {
+                    flag = false;
+                    currentUser = -1;
+                }
+                default -> {
+                    System.out.println("Enter between 1 to 4");
+                }
+            }
+        }
 
     }
 

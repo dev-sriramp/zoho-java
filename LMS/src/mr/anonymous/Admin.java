@@ -3,7 +3,7 @@ package mr.anonymous;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Admin extends LMS{
+public class Admin{
     int currentUser = -1;
     String username, password, adminId;
     User userobj = new User();
@@ -20,7 +20,7 @@ public class Admin extends LMS{
     Scanner sc = new Scanner(System.in);
     
 
-    public void admin(User userobj) {
+    public void admin() {
         if (adminList.size() == 0) {
             Admin temp = new Admin("admin", "1234", "A0" + adminList.size());
             adminList.add(temp);
@@ -55,7 +55,7 @@ public class Admin extends LMS{
                     String password = sc.nextLine();
                     if (password.equals(adminList.get(currentUser).password)) {
                         flag = false;
-                        adminOperation(userobj);
+                        adminOperation();
                     } else {
                         attempt++;
                         System.out.println("Wrong password Try again");
@@ -77,31 +77,35 @@ public class Admin extends LMS{
 
     }
 
-    private void adminOperation(User userobj) {
+    private void adminOperation() {
         boolean flag = true;
         while (flag) {
             Flush.flush();
             System.out.println("Welcome " + adminList.get(currentUser).username);
             System.out.println("Enter an operation");
-            System.out.println("1.Add Admin\n2.Add Borrower\n3.Add Book\n4.Delete Book\n5.Search Book\n6.Sort Book\n7.Exit");
+            System.out.println("1.Add Admin\n2.Add Borrower\n3.Add Book\n4.List All Books\n5.Delete Book\n6.Search Book\n7.Sort Book\n8.Exit");
             int operation = sc.nextInt();
             switch (operation) {
                 case 1 -> addAdmin();
                 case 2 -> {
-                    userobj.addUser();
+                    LMS.userobj.addUser();
                 }
                 case 3->{
                     addBook();
                 }
-                case 4->{deleteBook();}
-                case 5->{searchBook();}
-                case 6 ->{sortBook();}
-                case 7 -> {
+                case 4->{
+                    LMS.bookObj.listBook();
+                }
+                case 5->{deleteBook();}
+                case 6->{searchBook();}
+                case 7 ->{sortBook();}
+                case 8 -> {
                     sc.nextLine();
                     flag = false;
+                    currentUser=-1;
                 }
                 default -> {
-                    System.out.println("Enter between 1 to 3");
+                    System.out.println("Enter between 1 to 8");
                 }
             }
         }
@@ -118,6 +122,7 @@ public class Admin extends LMS{
     }
 
     private void addBook() {
+        LMS.bookObj.addbook();
     }
 
     private void addAdmin() {
