@@ -15,7 +15,7 @@ public class Atm {
     static int currentUser = -1;
 
     public static void main(String[] args) {
-        user1[0] = new User("sriram", 1234, 100000);
+        user1[0] = new User("sriram", 1234, 200);
         user1[1] = new User("anonymous", 9585, 1000);
         user1[2] = new User("mranonymous", 1723, 19865);
 
@@ -130,10 +130,13 @@ public class Atm {
 
         int nowwith = sc.nextInt();
         int temp = nowwith;
-        if (nowwith >= totalAmount && user1[currentUser].amount >= nowwith) {
-            System.out.println("Enter a lower amount to withdraw");
-
-        } else {
+       if(nowwith  > totalAmount){
+           System.out.println("Insufficient fund in ATM");
+       }
+       else if(nowwith > user1[currentUser].amount){
+           System.out.println("Insufficient fund in Your Account");
+        }
+        else {
             int possibility[] = { 0, 0, 0, 0 };
             int presentCount[] = new int[4];
             for(int i=0;i<=3;i++){
@@ -142,11 +145,17 @@ public class Atm {
 
             if (nowwith % 10 == 0 && nowwith % 100 == 0) {
                 while (nowwith >= 2000 && presentCount[3] > 0) {
+                    if(presentCount[3]<10 && presentCount[2]>=20 || presentCount[3]<10 && presentCount[1]*200>=nowwith ){
+                        break;
+                    }
                     nowwith -= 2000;
                     presentCount[3]--;
                     possibility[3]++;
                 }
                 while (nowwith >= 500 && presentCount[2] > 0) {
+                    if((presentCount[2]<10 && presentCount[1]>=50 && presentCount[0]>=1 )|| (presentCount[2]<10 && presentCount[1]>=50 && nowwith%200==0)){
+                        break;
+                    }
                     nowwith -= 500;
                     presentCount[2]--;
                     possibility[2]++;
@@ -162,6 +171,7 @@ public class Atm {
                     possibility[0]++;
                 }
                 if (nowwith == 0) {
+                    System.out.println("100's =>"+possibility[0]+"\n200's =>"+possibility[1]+"\n500's =>"+possibility[2]+"\n2000's =>"+possibility[3]);
                     count = presentCount;
                     totalAmount = totalAmount - temp;
                     user1[currentUser].amount = user1[currentUser].amount - temp;
@@ -173,7 +183,7 @@ public class Atm {
                     System.out.println("Enter a valid combination");
                 }
             } else {
-                System.out.println("Enter amount in 100's only");
+                System.out.println("Enter amount in 100's ,200's,500's and 2000's only");
             }
         }
     }
